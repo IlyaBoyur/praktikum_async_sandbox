@@ -1,6 +1,6 @@
 """
 Класс Range является "итерабельным" - реализует метод __iter__
-Класс RangeIterator является итератором, или итерируемым объектом
+Класс RangeIterator является итератором, или итерируемым объектом - реализует метод __next__
 """
 class Range:
     def __init__(self, stop_value: int):
@@ -22,8 +22,9 @@ class RangeIterator:
 
 
 def test_range():
-    assert [_ for _ in Range(5)] == [i for i in range(5)]
+    assert [_ for _ in Range(5)] == [_ for _ in range(5)]
     assert list(Range(5)) == list(range(5))
+    print(*[_ for _ in Range(5)])
     print("test succeeded")
 
 if __name__ == "__main__":

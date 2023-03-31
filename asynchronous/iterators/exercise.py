@@ -23,7 +23,9 @@ for i in cyclic_iterator:
 import typing
 
 
-class CyclicIteratorGen:
+class CyclicGen:
+    """Class object is iterable"""
+
     def __init__(self, iterable):
         self.iterable = iterable
 
@@ -35,6 +37,8 @@ class CyclicIteratorGen:
 
 
 class CyclicIterator:
+    """Class object is iterable AND is iterator"""
+
     def __init__(self, iterable):
         self.iterable = iterable
         self.iterator = iter(iterable)
@@ -49,15 +53,15 @@ class CyclicIterator:
             self.iterator = iter(self.iterable)
             return next(self.iterator)
 
-if __name__ == "__main__":
-    cyclic_iterator = CyclicIterator(range(3))
-    # cyclic_iterator = CyclicIterator(list(range(3)))
-    # cyclic_iterator = CyclicIterator(tuple(range(3)))
-    # cyclic_iterator = CyclicIterator(set(range(3)))
-    iterable = iter(cyclic_iterator)
-    print(next(iterable))
-    print(next(iterable))
-    print(next(iterable))
-    print(next(iterable))
 
-    # print(next(cyclic_iterator))
+def test_cyclic_iterator():
+    cyclic_iterator = CyclicIterator(range(3))
+    
+    for _ in range(4):
+        print(next(cyclic_iterator), end=" ")
+    print()
+    print("test succeeded")
+
+
+if __name__ == "__main__":
+    test_cyclic_iterator()
