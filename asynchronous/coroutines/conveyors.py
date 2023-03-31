@@ -6,6 +6,7 @@ def target():
     except GeneratorExit:
         print("Target: Завершение")
 
+
 def pipe():
     output = target()
     output.send(None)
@@ -15,7 +16,8 @@ def pipe():
             print(f"Pipe: Обработка {data_chunk}")
             output.send(data_chunk * 2)
     except GeneratorExit:
-        pass
+        print("Pipe: Завершение")
+
 
 def source():
     output = pipe()
@@ -24,6 +26,7 @@ def source():
         print(f"Source: Отправлено {data}")
         output.send(data)
     output.close()
+
 
 if __name__ == "__main__":
     s = source()

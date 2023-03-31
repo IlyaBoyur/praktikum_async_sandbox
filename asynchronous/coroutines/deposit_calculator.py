@@ -2,6 +2,7 @@ import math
 
 
 def cash_return_coro(percent: float, years: int) -> float:
+    """Calculate deposit return"""
     value = math.pow(1 + percent / 100, years)
     while True:
         try:
@@ -19,5 +20,3 @@ if __name__ == "__main__":
         print(coro.send(item))
         next(coro)
     coro.close()
-
-
