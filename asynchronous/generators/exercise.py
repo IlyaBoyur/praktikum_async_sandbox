@@ -23,13 +23,13 @@
 """
 from dataclasses import dataclass
 from datetime import datetime, timedelta
-from typing import Generator, List, Tuple
+from typing import Generator
 
 
 @dataclass
 class Movie:
     title: str
-    dates: List[Tuple[datetime, datetime]]
+    dates: list[tuple[datetime, datetime]]
 
     def schedule(self) -> Generator[datetime, None, None]:
         for start, end in self.dates:
@@ -40,10 +40,11 @@ class Movie:
 
 
 if __name__ == "__main__":
-    m = Movie('sw', 
-              [(datetime(2020, 1, 1), datetime(2020, 1, 7)),
-               (datetime(2020, 1, 15), datetime(2020, 2, 7))]
+    movie = Movie(
+        'Star Wars', 
+        [(datetime(2020, 1, 1), datetime(2020, 1, 7)),
+        (datetime(2020, 1, 15), datetime(2020, 2, 7))]
     )
 
-    for d in m.schedule():
-        print(d)
+    for date in movie.schedule():
+        print(date)
