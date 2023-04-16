@@ -2,10 +2,11 @@ import operator
 
 
 def coroutine(f):
-    def wrap(*args,**kwargs):
-        gen = f(*args,**kwargs)
+    def wrap(*args, **kwargs):
+        gen = f(*args, **kwargs)
         gen.send(None)
         return gen
+
     return wrap
 
 
@@ -13,7 +14,7 @@ def coroutine(f):
 def func_manager():
     history = []
     while True:
-        x, y, func = (yield)
+        x, y, func = yield
         if func == "h":
             print(history)
             continue
@@ -31,8 +32,3 @@ if __name__ == "__main__":
     manager.send((5, 15, operator.mul))
     manager.send((None, None, "h"))
     manager.close()
-
-
-
-
-

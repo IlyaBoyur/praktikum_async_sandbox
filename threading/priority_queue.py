@@ -1,14 +1,14 @@
-from random import random, randint
-from time import sleep
-from threading import Thread
 from queue import PriorityQueue
+from random import randint, random
+from threading import Thread
+from time import sleep
 
 
 def producer(queue):
     print("Producer: начало работы")
     for idx in range(5):
         data = random()
-        priority = randint(0 , 5)
+        priority = randint(0, 5)
         task = (priority, data)
         queue.put(task)
         print(f"Producer: в очередь добавлен элемент [{task}]")
@@ -27,8 +27,6 @@ def consumer(queue):
         print(f"Consumer: обработан элемент {task}")
         queue.task_done()
     print("Consumer: завершение работы")
-
-
 
 
 queue = PriorityQueue()

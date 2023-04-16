@@ -1,16 +1,17 @@
 # python 3.9.5
 
-from threading import Thread, Lock
+from threading import Lock, Thread
 
 counter = 0
 
 # Объект блокировки
 lock = Lock()
 
+
 def increment():
     global counter
     for _ in range(2000000):
-        # С помощью контекстного менеджера захватываем блокировку 
+        # С помощью контекстного менеджера захватываем блокировку
         # и отпускаем, как только выходим из него
         with lock:
             counter += int(1)

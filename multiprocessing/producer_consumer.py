@@ -1,4 +1,3 @@
-
 import multiprocessing
 import random
 import time
@@ -35,7 +34,7 @@ class Consumer(multiprocessing.Process):
                 time.sleep(1)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     queue = multiprocessing.Queue()
     process_producer = Producer(queue)
     process_consumer = Consumer(queue)

@@ -6,10 +6,10 @@ def cash_return_coro(percent: float, years: int) -> float:
     value = math.pow(1 + percent / 100, years)
     while True:
         try:
-            deposit = (yield)
+            deposit = yield
             yield round(deposit * value, 2)
         except GeneratorExit:
-            print('Выход из корутины')
+            print("Выход из корутины")
             raise
 
 

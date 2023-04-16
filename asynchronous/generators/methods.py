@@ -1,7 +1,7 @@
 def generator(start=1):
     result = start
     while True:
-        yield result + result*2
+        yield result + result * 2
         result += 1
 
 
@@ -29,7 +29,7 @@ except RuntimeError as error:
 # send
 def generator_by_val(start=1):
     while True:
-        start = yield start + start*2
+        start = yield start + start * 2
 
 
 gen_obj3 = generator_by_val(2)

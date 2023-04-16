@@ -1,9 +1,10 @@
 # python 3.9.5
 
-import requests
-from multiprocessing.dummy import Pool as ThreadPool
-from multiprocessing import cpu_count
 import time
+from multiprocessing import cpu_count
+from multiprocessing.dummy import Pool as ThreadPool
+
+import requests
 
 urls = [
     "https://www.google.com/",
@@ -15,11 +16,13 @@ urls = [
 real_cpu_count = cpu_count()
 print(f"cpu count: {real_cpu_count}")
 
+
 def fetch_data(url):
     response = requests.get(url)
     data = response.content
     len_data = len(data)
     # print(f"{url} - {len(data)}")
+
 
 for size in range(1, real_cpu_count * 3 + 1):
     time_s = time.time()

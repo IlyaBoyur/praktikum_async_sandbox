@@ -1,5 +1,6 @@
 from task import Task
 
+
 def double(x):
     yield x * x
 

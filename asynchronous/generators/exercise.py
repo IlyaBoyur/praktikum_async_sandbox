@@ -41,9 +41,11 @@ class Movie:
 
 if __name__ == "__main__":
     movie = Movie(
-        'Star Wars', 
-        [(datetime(2020, 1, 1), datetime(2020, 1, 7)),
-        (datetime(2020, 1, 15), datetime(2020, 2, 7))]
+        "Star Wars",
+        [
+            (datetime(2020, 1, 1), datetime(2020, 1, 7)),
+            (datetime(2020, 1, 15), datetime(2020, 2, 7)),
+        ],
     )
 
     for date in movie.schedule():

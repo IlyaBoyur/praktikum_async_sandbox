@@ -25,7 +25,7 @@ def producer(data_pool, pool_size):
         # При замене на .notify_all(), сигнал о продолжении получат все потоки,
         # подписанные и ожидающие текущий триггер
         condition.notify()
-        print('Отправлено:', num)
+        print("Отправлено:", num)
         # Отпускаем внутренний Lock
         condition.release()
 
@@ -39,12 +39,12 @@ def consumer(data_pool, pool_size):
         condition.wait()
         # Где-то в другом потоке вызван notify / notify_all и отпущен внутренний Lock,
         # захватываем внутренний Lock
-        print('%s: Получено: %s' % (time.ctime(), data_pool.pop()))
+        print("%s: Получено: %s" % (time.ctime(), data_pool.pop()))
         # Отпускаем внутренний Lock
         condition.release()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     threads = []
     threads_max = random.randrange(2, 7)
 
@@ -58,5 +58,4 @@ if __name__ == '__main__':
     for thread in threads:
         thread.join()
 
-    print('Все посылки отправлены и получены!')
-
+    print("Все посылки отправлены и получены!")

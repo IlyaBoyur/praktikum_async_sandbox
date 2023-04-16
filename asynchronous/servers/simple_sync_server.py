@@ -5,7 +5,9 @@ HOST, PORT = "", 8888
 
 def handle_request(request: bytes) -> bytes:
     request_data = request.decode()
-    http_response = f"""HTTP/1.1 200 OK\nContent-Type: text/html\n\n{request_data}"""
+    http_response = (
+        f"""HTTP/1.1 200 OK\nContent-Type: text/html\n\n{request_data}"""
+    )
     return http_response.encode()
 
 
@@ -19,7 +21,9 @@ def serve_forever():
         while True:
             client_connection, client_address = listen_socket.accept()
             with client_connection:
-                request = client_connection.recv(1024)  # Получаем информацию от клиента
+                request = client_connection.recv(
+                    1024
+                )  # Получаем информацию от клиента
                 http_response = handle_request(request)
                 client_connection.sendall(http_response)
 

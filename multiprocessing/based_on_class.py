@@ -9,10 +9,10 @@ class CustomProcess(Process):
 
     def run(self):
         for i in range(self._limit):
-            print(f'Из CustomProcess: {i}')
+            print(f"Из CustomProcess: {i}")
             sleep(0.5)
 
 
 if __name__ == "__main__":
     custom = CustomProcess(5)
-    custom.start() 
+    custom.start()

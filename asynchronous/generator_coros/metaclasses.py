@@ -4,7 +4,7 @@ from typing import Any
 def create_class_with_type():
     print("create_class_with_type:")
     # type - метакласс - объект, создающий новые классы
-    MyClass = type('MyClass', (object,), {'test_attr': 15})
+    MyClass = type("MyClass", (object,), {"test_attr": 15})
     my_class_instance = MyClass()
 
     print(type(MyClass))
@@ -14,7 +14,10 @@ def create_class_with_type():
 def create_metaclass():
     print("create_metaclass:")
     """Метакласс - любой callable объект с параметрами"""
-    def metaclass_creator(class_name: str, parents: list[type], attrs: list[Any]):
+
+    def metaclass_creator(
+        class_name: str, parents: list[type], attrs: list[Any]
+    ):
         return "Simple metaclass"
 
     class MyClass(metaclass=metaclass_creator):
@@ -22,10 +25,11 @@ def create_metaclass():
 
     print(MyClass)
     print(type(MyClass))
-#
+
 
 def create_class_type():
     print("create_class_type:")
+
     class MyMeta(type):
         def __new__(cls, cls_name, parents, attrs):
             print("my_meta: вызвали метод __new__")
@@ -37,7 +41,6 @@ def create_class_type():
             print("my_meta: вызвали метод __call__")
             return super().__call__(*args, **kwargs)
 
-
     class MyClass(metaclass=MyMeta):
         pass
 
@@ -46,14 +49,14 @@ def create_class_type():
 
 def create_singleton_class():
     print("create_singleton_class:")
+
     class SingletonMeta(type):
         _instances = {}
-    
+
         def __call__(cls, *args, **kwargs):
             if cls not in cls._instances:
                 cls._instances[cls] = super().__call__(*args, **kwargs)
             return cls._instances[cls]
-
 
     class MySingleton(metaclass=SingletonMeta):
         pass

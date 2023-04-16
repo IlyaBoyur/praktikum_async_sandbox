@@ -35,7 +35,9 @@ def get_system_info():
             "architecture": platform.machine(),
             "hostname": socket.gethostname(),
             "ip-address": socket.gethostbyname(socket.gethostname()),
-            "mac-address": ":".join(re.findall("..", "%012x" % uuid.getnode())),
+            "mac-address": ":".join(
+                re.findall("..", "%012x" % uuid.getnode())
+            ),
             "processor": platform.processor(),
             # "ram": str(round(psutil.virtual_memory().total / (1024.0 **3)))+" GB"
         }
@@ -88,8 +90,12 @@ def serve_forever():
     Метод запускает сервер на постоянное прослушивание новых сообщений
     """
     with selectors.SelectSelector() as selector:
-        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as server_socket:
-            server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, True)
+        with socket.socket(
+            socket.AF_INET, socket.SOCK_STREAM
+        ) as server_socket:
+            server_socket.setsockopt(
+                socket.SOL_SOCKET, socket.SO_REUSEADDR, True
+            )
             server_socket.bind((HOST, PORT))
             server_socket.listen()
             server_socket.setblocking(False)
@@ -100,7 +106,9 @@ def serve_forever():
             # Другими  словами, каждый раз, когда к серверу отправляют новую пачку данных
             # и её получает ОС, она отправляет событие в программу,
             # а та вызывает функцию new_connection.
-            selector.register(server_socket, selectors.EVENT_READ, new_connection)
+            selector.register(
+                server_socket, selectors.EVENT_READ, new_connection
+            )
 
             while True:
                 run_iteration(selector)
@@ -109,4 +117,5 @@ def serve_forever():
 if __name__ == "__main__":
     logger.setLevel(logging.INFO)
     logger.addHandler(logging.StreamHandler(stream=sys.stdout))
+
     serve_forever()

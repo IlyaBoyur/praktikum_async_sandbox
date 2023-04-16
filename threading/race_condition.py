@@ -5,10 +5,12 @@ from threading import Thread
 # Глобальная переменная, которая будет изменяться из нескольких потоков
 counter = 0
 
+
 def increment():
     global counter
     for _ in range(2_000_000):
         counter += int(1)
+
 
 # Создание и запуск потоков
 t = Thread(target=increment)

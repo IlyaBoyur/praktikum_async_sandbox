@@ -56,7 +56,7 @@ class CyclicIterator:
 
 def test_cyclic_iterator():
     cyclic_iterator = CyclicIterator(range(3))
-    
+
     for _ in range(4):
         print(next(cyclic_iterator), end=" ")
     print()

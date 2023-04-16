@@ -1,6 +1,8 @@
 """
 Класс Range2 является "итерабельным" И итератором одновременно
 """
+
+
 class Range2:
     def __init__(self, stop_value: int):
         self.current = -1
@@ -21,6 +23,7 @@ def test_range():
     assert list(Range2(5)) == list(range(5))
     print(*[_ for _ in Range2(5)])
     print("test succeeded")
+
 
 if __name__ == "__main__":
     test_range()

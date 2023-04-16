@@ -1,7 +1,9 @@
 import asyncio
 
+
 async def delay(delay):
     await asyncio.sleep(delay)
+
 
 loop = asyncio.get_event_loop()
 task1 = loop.create_task(delay(1))
